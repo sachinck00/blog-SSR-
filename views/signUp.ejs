@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>signup</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <form  action="/users/signup" method="post">
+      <h1>SignUp Page</h1>
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="username" class="col-form-label">Full Name : </label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            aria-describedby="passwordHelpInline"
+          />
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mt3">
+        <div class="col-auto">
+          <label for="email" class="col-form-label">User Email :</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            aria-describedby="passwordHelpInline"
+          />
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mt3">
+        <div class="col-auto">
+          <label for="password" class="col-form-label">Password : </label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            aria-describedby="passwordHelpInline"
+          />
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mt3">
+        <div class="col-auto">
+          <input
+            type="submit"
+            value="submit"
+            class="form-control"
+            aria-describedby="passwordHelpInline"
+          />
+        </div>
+      </div>
+    </form>
+
+    <%- include("./partials/script") %>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container">
+      <h1>
+        Title <%= blog.title %> , created by <%= blog.createdBy.fullName %>
+      </h1>
+      <img src="<%= blog.coverImageUrl %> " width="400" height="300" />
+      <pre><%= blog.body %></pre>
+
+      <div class="accordion mt-3 mb-3" id="accordionExample">
+        <% if(comments) { %> 
+        <h4>Comments :  (<%= comments.length %>)</h4>
+        <% comments.forEach((comment, index) => { %>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              <pre><%= index+1 %> . <%= comment.content %></pre>
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <strong>posted by <%= comment.createdBy.fullName %></strong>
+            </div>
+          </div>
+        </div>
+        <% }) %> <% } else { %>
+        <div class="accordion-item">
+          <h4 class="accordion-header">
+           no comments here . .
+          </h4>
+        </div>
+        <% } %>
+      </div>
+
+      <% if(user) { %>
+      <form action="/blog/comments/<%= blog._id %>" method="post">
+        <h1>Comments :</h1>
+        <div class="input-group">
+          <span class="input-group-text">Add comments here .</span>
+          <textarea
+            class="form-control"
+            aria-label="comments here ."
+            name="comment"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm mt-2">post</button>
+      </form>
+      <% } %>
+    </div>
+
+    <%- include("./partials/script") %>
+  </body>
+</html>
